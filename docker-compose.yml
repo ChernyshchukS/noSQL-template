@@ -1,0 +1,23 @@
+services:
+  node:
+    image: node
+    container_name: NoSQL-node
+    user: node
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "3000:3000"
+#    Если вы хотите, чтобы сервер перезагружался каждый раз,
+#    когда вы вносите изменения в файлы в backend,
+#    вы можете настроить его на использование Nodemon.
+#    https://habr.com/ru/companies/rshb/articles/680382/
+    command: "npm run dev"
+
+networks:
+  default:
+    name: NoSQL-network
+# docker-compose up -d
+# docker-compose down

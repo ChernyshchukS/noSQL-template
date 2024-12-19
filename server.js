@@ -16,5 +16,5 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 app.listen(3000, () => {
-    console.log('Express веб приложение на localhost:3000');
+    console.log('Express веб приложение в Docker и на localhost:3000');
 });
