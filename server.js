@@ -11,9 +11,29 @@
 // на GitHub (https://github.com/alexyoung) и в Twitter (@alex_young).
 
 const express = require('express');
+const cors = require('cors');
+
+// const {json} = require("express");
 const app = express();
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.use(express.json());
+app.use(cors()); // разрешаем CORS всех запросов
+app.get('/', async (req, res, next) => {
+    // параметр, если понадобится
+    const id = req.params.id;
+    console.log('функция запустилась');
+    try {
+        const result = {
+            message: 'Сообщение о выполнении задания lab.',
+            firstParameter: 'lab первый параметр',
+            secondParameter: 'lab второй параметр',
+        };
+        if (result.error) {
+            return res.status(500).json({error: result.error});
+        }
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({message: 'Ошибка выполнения задания.', error: err.message});
+    }
 });
 app.listen(3000, () => {
     console.log('Express веб приложение в Docker и на localhost:3000');
