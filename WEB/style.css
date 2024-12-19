@@ -1,0 +1,83 @@
+/*
+   автор https://t.me/lime_txt
+   автор https://github.com/BovkunVS/WEB
+*/
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 120vh;
+  background-color: #f4f4f4;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow-y: auto; /*прокрутка*/
+  word-wrap: break-word; /*перенос слов*/
+}
+
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  background-color: #34495e;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li:hover {
+  background-color: #1abc9c;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+#taskDetails {
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+mark {
+  background-color: #ffcc00; /*по умолчанию*/
+  color: #000;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+mark.case-insensitive {
+  background-color: #66ff99; /*без учета регистра*/
+}
+
+mark.case-sensitive {
+  background-color: #66c7ff; /*с учетом регистра*/
+}
+
+mark.exclusion {
+  background-color: #ff6666; /*слова-исключения*/
+  color: #fff;
+}
