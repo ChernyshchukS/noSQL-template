@@ -35,7 +35,7 @@ function loadTaskDetails(taskId) {
 
   if (task.id === 1) {
     runTaskButton.addEventListener('click', () => {
-      fetch('http://localhost:3000/')
+      fetch('http://localhost:3000/lab00function01/1000')
         .then(response => response.json())
         .then(data => displayResult(data))
         .catch(err => handleError(err));

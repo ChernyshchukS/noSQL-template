@@ -12,21 +12,35 @@
 
 const express = require('express');
 const cors = require('cors');
+const functionOne = require('./functions/functionOne');
 
-// const {json} = require("express");
 const app = express();
 app.use(express.json());
 app.use(cors()); // разрешаем CORS всех запросов
 app.get('/', async (req, res, next) => {
     // параметр, если понадобится
     const id = req.params.id;
-    console.log('функция запустилась');
+    console.log('Функция запустилась');
     try {
-        const result = {
+        const result =  {
             message: 'Сообщение о выполнении задания lab.',
             firstParameter: 'lab первый параметр',
             secondParameter: 'lab второй параметр',
         };
+        if (result.error) {
+            return res.status(500).json({error: result.error});
+        }
+        res.json(result);
+    } catch (err) {
+        res.status(500).json({message: 'Ошибка выполнения задания.', error: err.message});
+    }
+});
+app.get('/lab00function01/:id', async (req, res, next) => {
+    // параметр, если понадобится
+    const id = req.params.id;
+    console.log(`Функция запустилась ${id}`);
+    try {
+        const result =  await functionOne(id);
         if (result.error) {
             return res.status(500).json({error: result.error});
         }
