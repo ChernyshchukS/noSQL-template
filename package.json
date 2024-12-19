@@ -1,12 +1,16 @@
 {
   "name": "lab-template",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Сервер для выполнения заданий к лабораторным работам",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
