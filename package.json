@@ -12,8 +12,12 @@
   "license": "ISC",
   "description": "Сервер для выполнения заданий к лабораторным работам",
   "dependencies": {
+    "@faker-js/faker": "^9.3.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "faker-js": "^1.0.0",
+    "mongodb": "^6.12.0",
     "nodemon": "^3.1.9"
   }
 }

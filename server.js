@@ -38,7 +38,7 @@ app.get('/', async (req, res, next) => {
 app.get('/lab00function01/:id', async (req, res, next) => {
     // параметр, если понадобится
     const id = req.params.id;
-    console.log(`Функция запустилась ${id}`);
+    console.log(`Функция запустилась с параметром ${id}`);
     try {
         const result =  await functionOne(id);
         if (result.error) {
@@ -49,6 +49,9 @@ app.get('/lab00function01/:id', async (req, res, next) => {
         res.status(500).json({message: 'Ошибка выполнения задания.', error: err.message});
     }
 });
-app.listen(3000, () => {
-    console.log('Express веб приложение в Docker и на localhost:3000');
+app.set('port', process.env.Node_PORT);
+app.listen(app.get('port'), () => {
+    console.log(`Express веб приложение в Docker и на localhost:${app.get('port')}`);
 });
+
+module.exports = app;

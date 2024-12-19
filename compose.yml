@@ -1,0 +1,54 @@
+services:
+  mongo:
+    image: mongo
+    container_name: NoSQL-mongo
+    # перезагрузить в случае сбоя
+    restart: always
+    ports:
+      # порт для подключения с реального компьютера хранится в файле .env
+      - ${MongoDB_PORT:?err}:27017
+    volumes:
+      # в этих папках MongoDB хранит свои данные
+      # - поэтому их нужно сохранить
+      # точка в пути обозначает текущий каталог
+      #
+      # папку mongo/data в текущей директории
+      # связать с папкой /data/db в контейнере
+      - ./mongo/data:/data/db
+
+  mongo-express:
+      image: mongo-express
+      container_name: NoSQL-express
+      restart: always
+      ports:
+        # доступ к аналогу phpMyAdmin http://localhost:8081
+        - "8081:8081"
+      environment:
+        # имя сервера NoSQL-mongo внутри виртуальной сети
+        # порт для подключения внутри виртуальной сети 27017
+        ME_CONFIG_MONGODB_URL: ${MONGO_URI:?err}
+        ME_CONFIG_BASICAUTH: false
+
+  node:
+    image: node
+    container_name: NoSQL-node
+    user: node
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    ports:
+      # порт для подключения с реального компьютера хранится в файле .env
+      - ${Node_PORT:?err}:3000
+#    Если вы хотите, чтобы сервер перезагружался каждый раз,
+#    когда вы вносите изменения в файлы в backend,
+#    вы можете настроить его на использование Nodemon.
+#    https://habr.com/ru/companies/rshb/articles/680382/
+    command: "npm run dev"
+
+networks:
+  default:
+    name: NoSQL-network
+# docker-compose up -d
+# docker-compose down
